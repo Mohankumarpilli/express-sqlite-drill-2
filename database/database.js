@@ -48,12 +48,10 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS comments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            task_id INTEGER NOT NULL,
-            project_id INTEGER NOT NULL,
             content TEXT NOT NULL,
             posted_at DATETIME DEFAULT (CURRENT_TIMESTAMP),
-            FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+            task_id INTEGER NULL,
+            project_id INTEGER NULL,
             FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE,
             FOREIGN KEY (project_id) REFERENCES projects (id) ON DELETE CASCADE
         );
@@ -64,7 +62,6 @@ db.serialize(() => {
     db.run(`CREATE INDEX IF NOT EXISTS idx_tasks_due_date ON tasks(due_date);`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_tasks_is_completed ON tasks(is_completed);`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_comments_task_id ON comments(task_id);`);
-    db.run(`CREATE INDEX IF NOT EXISTS idx_comments_user_id ON comments(user_id);`);
 });
 
 module.exports = db;
