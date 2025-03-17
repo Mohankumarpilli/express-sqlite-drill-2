@@ -1,0 +1,8 @@
+# Ignore all node_modules
+node_modules/
+
+# But don't ignore this specific file in node_modules
+!node_modules/specific-file-to-track.js
+
+# Ignore database.sqlite directory
+database.sqlite
