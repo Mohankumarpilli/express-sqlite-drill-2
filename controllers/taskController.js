@@ -60,7 +60,7 @@ exports.getbyid = (req,res) => {
     }else if(params == "is_completed"){        
         sql = `SELECT * FROM tasks WHERE is_completed = ?`
     }else if(params == "created_at"){
-        sql = `SELECT * FROM projects WHERE created_at = ?`
+        sql = `SELECT * FROM tasks WHERE created_at = ?`
     }else{
         return res.status(500).json({ error: "need any of this project_id, due_date, is_completed, created_at" });
     }
