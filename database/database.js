@@ -224,10 +224,10 @@ const populateDatabase = async () => {
     }
 };
 
-// populateDatabase().then(() => {
-//     console.log("Script execution complete.");
-// }).catch(err => {
-//     console.error("Script execution failed:", err);
-// });
+populateDatabase().then(() => {
+    console.log("Script execution complete.");
+}).catch(err => {
+    console.error("Script execution failed:", err);
+});
 
 module.exports = db;
