@@ -210,7 +210,6 @@ const populateDatabase = async () => {
         const USER_COUNT = 100;
         const PROJECT_COUNT = 1000000;
         const TASKS_PER_PROJECT = 10;
-        const COMMENT_COUNT = 500000;
         
         const users = generateUsers(USER_COUNT);
         await insertUsers(users, 50);

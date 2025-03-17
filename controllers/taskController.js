@@ -43,3 +43,34 @@ exports.deleteTask = (req, res) => {
         res.json({ message: "Task deleted successfully" });
     });
 };
+
+
+exports.getbyid = (req,res) => {
+    const params = req.url.split('/')[2];
+    let getby = req.params.id;
+    let sql;
+
+    console.log(getby);
+    console.log(params);
+
+    if(params == "project-id"){        
+        sql = `SELECT * FROM tasks WHERE project_id = ?`
+    }else if(params == "due_date") {        
+        sql = `SELECT * FROM tasks WHERE due_date = ?`
+    }else if(params == "is_completed"){        
+        sql = `SELECT * FROM tasks WHERE is_completed = ?`
+    }else if(params == "created_at"){
+        sql = `SELECT * FROM projects WHERE created_at = ?`
+    }else{
+        return res.status(500).json({ error: "need any of this project_id, due_date, is_completed, created_at" });
+    }
+
+    db.all(
+        sql,
+        [getby],
+        function (err,details) {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json(details);
+        }
+    )
+}
