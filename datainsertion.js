@@ -145,6 +145,7 @@ const populateDatabase = async () => {
         const TASKS_PER_PROJECT = 10;
 
         console.time('Database Population Time');
+        const startTime = Date.now();
 
         const users = generateUsers(USER_COUNT);
         await insertUsers(users, 50);
@@ -154,9 +155,11 @@ const populateDatabase = async () => {
         await generateAndInsertTasks(PROJECT_COUNT, TASKS_PER_PROJECT, 100000);
         
         console.timeEnd('Database Population Time');
+        const endTime = Date.now();
+        const executionTime = (endTime - startTime) / 1000;
 
         console.log("Database population completed successfully.");
-        
+
     } catch (err) {
         console.error("Error populating database:", err);
     }
