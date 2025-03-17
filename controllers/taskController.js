@@ -58,7 +58,7 @@ exports.getbyid = (req,res) => {
     }else if(params == "due_date") {        
         sql = `SELECT * FROM tasks WHERE due_date = ?`
     }else if(params == "is_completed"){        
-        sql = `SELECT * FROM tasks WHERE is_completed = ?`
+        sql = `SELECT is_completed FROM tasks WHERE id = ?`
     }else if(params == "created_at"){
         sql = `SELECT * FROM tasks WHERE created_at = ?`
     }else{
